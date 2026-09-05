@@ -9,44 +9,46 @@ def index():
 
     if request.method == "POST":
         try:
-            custo = float(request.form["custo"])
-            quantidade = int(request.form["quantidade"])
-            margem = float(request.form["margem"])
+            # Recebe os valores do formulário
+            custo = float(request.form.get("custo", 0))
+            quantidade = int(request.form.get("quantidade", 0))
+            preco = float(request.form.get("preco", 0))
+
+            # Validação
+            if custo < 0:
+                raise ValueError("O custo não pode ser negativo.")
 
             if quantidade <= 0:
-                raise ValueError
+                raise ValueError("A quantidade deve ser maior que zero.")
 
-            # Custo de cada doce
+            if preco < 0:
+                raise ValueError("O preço não pode ser negativo.")
+
+            # Cálculos
             custo_unitario = custo / quantidade
-
-            # Preço de venda com a margem desejada
-            preco_unitario = custo_unitario * (1 + margem / 100)
-
-            # Arredonda para 2 casas
-            custo_unitario = round(custo_unitario, 2)
-            preco_unitario = round(preco_unitario, 2)
-
-            # Faturamento e lucro
-            faturamento = preco_unitario * quantidade
+            faturamento = preco * quantidade
             lucro = faturamento - custo
 
+            # Margem de lucro sobre o faturamento
+            if faturamento > 0:
+                margem = (lucro / faturamento) * 100
+            else:
+                margem = 0
+
+            # Resultado enviado para o index.html
             resultado = {
-                "custo": custo,
-                "quantidade": quantidade,
-                "margem": margem,
                 "custo_unitario": custo_unitario,
-                "preco_unitario": preco_unitario,
-                "faturamento": round(faturamento, 2),
-                "lucro": round(lucro, 2)
+                "faturamento": faturamento,
+                "lucro": lucro,
+                "margem": margem
             }
 
         except (ValueError, TypeError):
-            resultado = {
-                "erro": "Digite valores válidos."
-            }
+            resultado = None
 
     return render_template("index.html", resultado=resultado)
 
 
+# Necessário para o Render/Gunicorn
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
