@@ -2,107 +2,461 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Calculadora de Doces</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Calculadora de Doces 2.0</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-            background: #fff5f8;
-            color: #333;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #fff6fa;
+            color: #292929;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 850px;
             margin: auto;
+            padding: 20px;
         }
 
-        h1 {
-            text-align: center;
-            color: #d63384;
-            margin-bottom: 8px;
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #d72d86,
+                    #f05ca7
+                );
+
+            color: white;
+
+            border-radius: 22px;
+
+            padding: 25px 22px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(160, 40, 100, 0.18);
         }
 
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
+        .hero h1 {
+            margin: 0 0 7px;
+
+            font-size: 29px;
         }
+
+        .hero p {
+            margin: 0;
+
+            opacity: 0.95;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CARDS
+        ========================= */
 
         .card {
             background: white;
-            padding: 22px;
+
             border-radius: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+
+            padding: 20px;
+
+            margin: 16px 0;
+
+            box-shadow:
+                0 4px 18px
+                rgba(0, 0, 0, 0.07);
+        }
+
+        .card h2 {
+            font-size: 21px;
+
+            margin:
+                0 0 15px;
+
+            color: #c32978;
+        }
+
+        /* =========================
+           CAMPOS
+        ========================= */
+
+        .grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .field {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
         }
 
         label {
-            display: block;
-            font-weight: bold;
-            margin-top: 15px;
-            margin-bottom: 6px;
+            font-weight: 700;
+
+            font-size: 14px;
         }
 
-        input {
+        input,
+        select {
+
             width: 100%;
+
             padding: 13px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+
+            border:
+                1px solid #ddd;
+
+            border-radius: 11px;
+
             font-size: 16px;
+
+            background: #fff;
+
+            outline: none;
         }
 
-        button {
-            width: 100%;
-            margin-top: 22px;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: #d63384;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
+        input:focus,
+        select:focus {
+
+            border-color: #d72d86;
+
+            box-shadow:
+                0 0 0 2px
+                rgba(215, 45, 134, 0.08);
         }
 
-        button:hover {
-            background: #b82b6f;
-        }
+        .hint {
 
-        .resultado {
-            margin-top: 25px;
-            padding: 18px;
-            background: #fff0f6;
-            border-radius: 12px;
-        }
+            font-size: 12px;
 
-        .resultado h2 {
-            color: #d63384;
-            margin-top: 0;
-        }
-
-        .valor {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .lucro {
-            color: #198754;
-        }
-
-        .rodape {
-            text-align: center;
-            margin-top: 20px;
             color: #777;
+
+            line-height: 1.4;
+        }
+
+        /* =========================
+           INGREDIENTES
+        ========================= */
+
+        .ingredient {
+
+            border:
+                1px solid #eee;
+
+            border-radius: 14px;
+
+            padding: 13px;
+
+            margin: 10px 0;
+
+            background: #fffafd;
+        }
+
+        .ingredient-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.4fr
+                0.7fr
+                0.6fr
+                0.8fr
+                0.8fr
+                auto;
+
+            gap: 8px;
+
+            align-items: end;
+        }
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .btn {
+
+            border: 0;
+
+            border-radius: 11px;
+
+            padding: 12px 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .btn-add {
+
+            background: #f7d5e8;
+
+            color: #a71f66;
+        }
+
+        .btn-add:hover {
+
+            background: #f2c5df;
+        }
+
+        .btn-remove {
+
+            background: #eee;
+
+            color: #777;
+        }
+
+        .btn-remove:hover {
+
+            background: #ddd;
+        }
+
+        .btn-main {
+
+            width: 100%;
+
+            background: #d72d86;
+
+            color: white;
+
+            font-size: 20px;
+
+            padding: 16px;
+
+            margin-top: 8px;
+        }
+
+        .btn-main:hover {
+
+            background: #bd216f;
+        }
+
+        /* =========================
+           RESULTADOS
+        ========================= */
+
+        .result-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 12px;
+        }
+
+        .metric {
+
+            padding: 15px;
+
+            border-radius: 14px;
+
+            background: #fff2f8;
+
+            border:
+                1px solid #f7d6e6;
+        }
+
+        .metric span {
+
+            display: block;
+
+            color: #666;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .metric strong {
+
+            font-size: 22px;
+        }
+
+        .profit {
+
+            color: #16865c;
+        }
+
+        /* =========================
+           PREÇO SUGERIDO
+        ========================= */
+
+        .price-box {
+
+            background: #f8e6f0;
+
+            border-radius: 16px;
+
+            padding: 18px;
+
+            margin-top: 15px;
+        }
+
+        .price-box .big {
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            color: #c32978;
+
+            margin:
+                7px 0 10px;
+        }
+
+        .price-box p {
+
+            margin: 5px 0;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           TABELA
+        ========================= */
+
+        table {
+
+            width: 100%;
+
+            border-collapse:
+                collapse;
+
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+
+            text-align: left;
+
+            padding: 9px;
+
+            border-bottom:
+                1px solid #eee;
+
             font-size: 13px;
         }
+
+        th {
+
+            color: #777;
+        }
+
+        /* =========================
+           AVISO
+        ========================= */
+
+        .note {
+
+            background: #f7f7f7;
+
+            border-radius: 12px;
+
+            padding: 12px;
+
+            font-size: 13px;
+
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-top: 15px;
+        }
+
+        /* =========================
+           RESUMO
+        ========================= */
+
+        .summary-title {
+
+            margin-top: 25px;
+
+            color: #c32978;
+        }
+
+        /* =========================
+           CELULAR
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .container {
+
+                padding: 12px;
+            }
+
+            .grid,
+            .result-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .ingredient-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .ingredient-grid .wide {
+
+                grid-column:
+                    1 / -1;
+            }
+
+            .hero h1 {
+
+                font-size: 25px;
+            }
+
+            .card {
+
+                padding: 16px;
+            }
+
+            table {
+
+                display: block;
+
+                overflow-x: auto;
+
+                white-space: nowrap;
+            }
+        }
+
     </style>
 </head>
 
@@ -110,112 +464,985 @@
 
 <div class="container">
 
-    <h1>🍬 Calculadora de Doces</h1>
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
 
-    <p class="subtitle">
-        Calcule seus custos, preço de venda e lucro.
-    </p>
+    <div class="hero">
 
-    <div class="card">
+        <h1>
+            🍫 Calculadora de Doces 2.0
+        </h1>
 
-        <form method="POST">
+        <p>
+            Descubra o custo real, preço ideal,
+            faturamento, lucro e margem dos seus doces.
+        </p>
 
-            <label for="custo">
-                Custo total dos ingredientes (R$)
-            </label>
+    </div>
 
-            <input
-                type="number"
-                id="custo"
-                name="custo"
-                step="0.01"
-                min="0"
-                placeholder="Ex: 50,00"
-                required
+
+    <!-- =====================================================
+         FORMULÁRIO
+    ====================================================== -->
+
+    <form method="POST">
+
+        <!-- =================================================
+             1. INGREDIENTES
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                1️⃣ Ingredientes e custo da receita
+            </h2>
+
+            <div id="ingredientes">
+
+                <!-- PRIMEIRO INGREDIENTE -->
+
+                <div class="ingredient">
+
+                    <div class="ingredient-grid">
+
+                        <div class="field wide">
+
+                            <label>
+                                Ingrediente
+                            </label>
+
+                            <input
+                                name="ingrediente_nome[]"
+                                placeholder="Ex.: Leite condensado"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Usado
+                            </label>
+
+                            <input
+                                name="ingrediente_quantidade[]"
+                                type="number"
+                                step="0.01"
+                                placeholder="395"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Unidade
+                            </label>
+
+                            <select
+                                name="ingrediente_unidade[]"
+                            >
+
+                                <option>
+                                    g
+                                </option>
+
+                                <option>
+                                    ml
+                                </option>
+
+                                <option>
+                                    un
+                                </option>
+
+                                <option>
+                                    kg
+                                </option>
+
+                                <option>
+                                    l
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Pacote contém
+                            </label>
+
+                            <input
+                                name="ingrediente_tamanho[]"
+                                type="number"
+                                step="0.01"
+                                placeholder="395"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                Custo pacote R$
+                            </label>
+
+                            <input
+                                name="ingrediente_custo[]"
+                                type="number"
+                                step="0.01"
+                                placeholder="6,50"
+                            >
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="btn btn-remove"
+                            onclick="remover(this)"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn btn-add"
+                onclick="adicionarIngrediente()"
             >
-
-            <label for="quantidade">
-                Quantidade de doces
-            </label>
-
-            <input
-                type="number"
-                id="quantidade"
-                name="quantidade"
-                min="1"
-                placeholder="Ex: 100"
-                required
-            >
-
-            <label for="preco">
-                Preço de venda por doce (R$)
-            </label>
-
-            <input
-                type="number"
-                id="preco"
-                name="preco"
-                step="0.01"
-                min="0"
-                placeholder="Ex: 2,50"
-                required
-            >
-
-            <button type="submit">
-                🧮 Calcular
+                ＋ Adicionar ingrediente
             </button>
 
-        </form>
 
-        {% if resultado %}
+            <p class="hint">
 
-        <div class="resultado">
+                Exemplo: você usou 395 g de um pacote
+                de 395 g que custou R$ 6,50.
+                O custo usado será R$ 6,50.
 
-            <h2>📊 Resultado</h2>
-
-            <p>
-                <strong>Custo por doce:</strong>
-            </p>
-
-            <p class="valor">
-                R$ {{ "%.2f"|format(resultado.custo_unitario) }}
-            </p>
-
-            <p>
-                <strong>Faturamento total:</strong>
-            </p>
-
-            <p class="valor">
-                R$ {{ "%.2f"|format(resultado.faturamento) }}
-            </p>
-
-            <p>
-                <strong>Lucro total:</strong>
-            </p>
-
-            <p class="valor lucro">
-                R$ {{ "%.2f"|format(resultado.lucro) }}
-            </p>
-
-            <p>
-                <strong>Margem de lucro:</strong>
-            </p>
-
-            <p class="valor lucro">
-                {{ "%.1f"|format(resultado.margem) }}%
             </p>
 
         </div>
 
+
+        <!-- =================================================
+             2. PRODUÇÃO
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                2️⃣ Produção
+            </h2>
+
+            <div class="grid">
+
+                <div class="field">
+
+                    <label>
+                        Quantos doces a receita rende?
+                    </label>
+
+                    <input
+                        name="rendimento"
+                        type="number"
+                        min="1"
+                        step="1"
+                        placeholder="Ex.: 100"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Quantos doces você vai vender?
+                    </label>
+
+                    <input
+                        name="quantidade_venda"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="Ex.: 100"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             3. EMBALAGENS
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                3️⃣ Embalagens
+            </h2>
+
+            <div class="grid">
+
+                <div class="field">
+
+                    <label>
+                        Custo de cada embalagem (R$)
+                    </label>
+
+                    <input
+                        name="custo_embalagem"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Ex.: 0,30"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Quantidade de embalagens
+                    </label>
+
+                    <input
+                        name="quantidade_embalagens"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="Ex.: 100"
+                    >
+
+                    <span class="hint">
+
+                        Se deixar vazio, será usada
+                        a quantidade de doces vendidos.
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             4. MÃO DE OBRA
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                4️⃣ Mão de obra
+            </h2>
+
+            <div class="field">
+
+                <label>
+
+                    Quanto você quer considerar
+                    pelo seu trabalho nesta produção? (R$)
+
+                </label>
+
+                <input
+                    name="mao_obra"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="Ex.: 80,00"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             5. GASTOS EXTRAS
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                5️⃣ Gastos extras
+            </h2>
+
+            <div class="field">
+
+                <label>
+
+                    Gás, energia, transporte,
+                    perdas e outros gastos (R$)
+
+                </label>
+
+                <input
+                    name="gastos_extras"
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="Ex.: 30,00"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             6. PREÇO DE VENDA
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                6️⃣ Preço ideal de venda
+            </h2>
+
+            <div class="grid">
+
+                <div class="field">
+
+                    <label>
+                        Margem de lucro desejada (%)
+                    </label>
+
+                    <input
+                        name="margem_desejada"
+                        type="number"
+                        min="0"
+                        max="99.9"
+                        step="0.1"
+                        value="50"
+                        required
+                    >
+
+                    <span class="hint">
+
+                        Exemplo: 50% significa que
+                        o lucro representa 50% do preço
+                        de venda.
+
+                    </span>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+
+                        Preço que você pretende cobrar
+                        por doce (R$)
+
+                    </label>
+
+                    <input
+                        name="preco_venda"
+                        type="number"
+                        min="0"
+                        step="0.01"
+                        placeholder="Ex.: 2,50"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BOTÃO CALCULAR
+        ================================================== -->
+
+        <button
+            class="btn btn-main"
+            type="submit"
+        >
+
+            🧮 CALCULAR TUDO
+
+        </button>
+
+    </form>
+
+
+    <!-- =====================================================
+         RESULTADOS
+    ====================================================== -->
+
+    {% if resultado %}
+
+    <div class="card">
+
+        <h2>
+            7️⃣ 📊 Resultado completo
+        </h2>
+
+
+        <!-- =================================================
+             PRINCIPAIS MÉTRICAS
+        ================================================== -->
+
+        <div class="result-grid">
+
+
+            <div class="metric">
+
+                <span>
+                    Custo dos ingredientes
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.custo_ingredientes
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Custo das embalagens
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.custo_embalagens
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Mão de obra
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.mao_obra
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Gastos extras
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.gastos_extras
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Custo total da produção
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.custo_total
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Custo por doce
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.custo_por_doce
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Faturamento
+                </span>
+
+                <strong>
+
+                    {{ "R$ %.2f"|format(
+                        resultado.faturamento
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Lucro por doce
+                </span>
+
+                <strong class="profit">
+
+                    {{ "R$ %.2f"|format(
+                        resultado.lucro_por_doce
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Lucro total
+                </span>
+
+                <strong class="profit">
+
+                    {{ "R$ %.2f"|format(
+                        resultado.lucro_total
+                    ) }}
+
+                </strong>
+
+            </div>
+
+
+            <div class="metric">
+
+                <span>
+                    Margem real
+                </span>
+
+                <strong class="profit">
+
+                    {{ "%.1f"|format(
+                        resultado.margem_real
+                    ) }}%
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             PREÇO SUGERIDO
+        ================================================== -->
+
+        <div class="price-box">
+
+            <div>
+
+                💡 Preço sugerido para margem de
+
+                <strong>
+
+                    {{ "%.1f"|format(
+                        resultado.margem_desejada
+                    ) }}%
+
+                </strong>
+
+            </div>
+
+
+            <div class="big">
+
+                R$
+                {{ "%.2f"|format(
+                    resultado.preco_sugerido
+                ) }}
+
+            </div>
+
+
+            <p>
+
+                💰 Lucro por doce nesse preço:
+
+                <strong>
+
+                    R$
+                    {{ "%.2f"|format(
+                        resultado.lucro_sugerido_por_doce
+                    ) }}
+
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                📦 Faturamento vendendo
+
+                {{ "%.0f"|format(
+                    resultado.quantidade_venda
+                ) }}
+
+                doces:
+
+                <strong>
+
+                    R$
+                    {{ "%.2f"|format(
+                        resultado.faturamento_sugerido
+                    ) }}
+
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                📈 Lucro total nesse preço:
+
+                <strong>
+
+                    R$
+                    {{ "%.2f"|format(
+                        resultado.lucro_sugerido_total
+                    ) }}
+
+                </strong>
+
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             DETALHAMENTO DOS INGREDIENTES
+        ================================================== -->
+
+        {% if resultado.ingredientes %}
+
+        <h3 class="summary-title">
+
+            🧾 Detalhamento dos ingredientes
+
+        </h3>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Ingrediente
+                    </th>
+
+                    <th>
+                        Quantidade usada
+                    </th>
+
+                    <th>
+                        Custo usado
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for item in resultado.ingredientes %}
+
+                <tr>
+
+                    <td>
+
+                        {{ item.nome }}
+
+                    </td>
+
+
+                    <td>
+
+                        {{ "%.2f"|format(
+                            item.quantidade
+                        ) }}
+
+                        {{ item.unidade }}
+
+                    </td>
+
+
+                    <td>
+
+                        R$
+
+                        {{ "%.2f"|format(
+                            item.custo_usado
+                        ) }}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
         {% endif %}
+
+
+        <!-- =================================================
+             EXPLICAÇÃO
+        ================================================== -->
+
+        <div class="note">
+
+            <strong>
+                Como interpretar:
+            </strong>
+
+            O custo por doce considera
+            ingredientes, embalagens,
+            mão de obra e gastos extras
+            distribuídos pela quantidade
+            produzida.
+
+            <br><br>
+
+            A margem de lucro é calculada
+            sobre o faturamento.
+
+            <br><br>
+
+            O preço sugerido mostra quanto
+            cobrar por doce para alcançar
+            a margem de lucro escolhida.
+
+        </div>
 
     </div>
 
-    <p class="rodape">
-        Calculadora de Doces — Versão 1.0
-    </p>
+    {% endif %}
 
 </div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script>
+
+function adicionarIngrediente() {
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "ingredient";
+
+
+    div.innerHTML = `
+
+        <div class="ingredient-grid">
+
+            <div class="field wide">
+
+                <label>
+                    Ingrediente
+                </label>
+
+                <input
+                    name="ingrediente_nome[]"
+                    placeholder="Ex.: Chocolate"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Usado
+                </label>
+
+                <input
+                    name="ingrediente_quantidade[]"
+                    type="number"
+                    step="0.01"
+                    placeholder="200"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Unidade
+                </label>
+
+                <select
+                    name="ingrediente_unidade[]"
+                >
+
+                    <option>
+                        g
+                    </option>
+
+                    <option>
+                        ml
+                    </option>
+
+                    <option>
+                        un
+                    </option>
+
+                    <option>
+                        kg
+                    </option>
+
+                    <option>
+                        l
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Pacote contém
+                </label>
+
+                <input
+                    name="ingrediente_tamanho[]"
+                    type="number"
+                    step="0.01"
+                    placeholder="500"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    Custo pacote R$
+                </label>
+
+                <input
+                    name="ingrediente_custo[]"
+                    type="number"
+                    step="0.01"
+                    placeholder="20,00"
+                >
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn btn-remove"
+                onclick="remover(this)"
+            >
+
+                ✕
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("ingredientes")
+        .appendChild(div);
+}
+
+
+function remover(botao) {
+
+    const linhas =
+        document.querySelectorAll(
+            ".ingredient"
+        );
+
+
+    if (linhas.length > 1) {
+
+        botao
+            .closest(".ingredient")
+            .remove();
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
